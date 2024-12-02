@@ -1,0 +1,18 @@
+<idea-plugin>
+    <id>com.example.accessibilitychecker</id>
+    <name>Accessibility Checker</name>
+    <version>1.0</version>
+    <vendor email="email@example.com" url="https://example.com">Seu Nome</vendor>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <inspectionTool id="AccessibilityChecker" implementationClass="AccessibilityChecker" />
+    </extensions>
+
+    <actions>
+        <group id="AccessibilityCheckerGroup" text="Accessibility Checker" description="Check HTML and CSS for accessibility issues">
+            <action id="RunAccessibilityCheck" class="AccessibilityAction" text="Run Accessibility Check" description="Check for accessibility issues" />
+        </group>
+    </actions>
+</idea-plugin>
