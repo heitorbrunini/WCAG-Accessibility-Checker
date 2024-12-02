@@ -8,6 +8,9 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <inspectionTool id="AccessibilityChecker" implementationClass="AccessibilityChecker" />
+        <projectConfigurable instance="AccessibilityCheckerConfigurable"
+                             displayName="Accessibility Checker Settings"
+                             id="com.example.accessibilityCheckerConfigurable"/>
     </extensions>
 
     <actions>
