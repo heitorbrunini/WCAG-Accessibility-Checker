@@ -1,7 +1,9 @@
 import com.intellij.codeInspection.*
 import com.intellij.lang.html.HTMLLanguage
 import com.intellij.lang.css.CssLanguage
+import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
+import org.brunini.demo.GptTools.ChatGPTClient
 import javax.swing.JOptionPane
 
 class AccessibilityChecker : LocalInspectionTool() {
@@ -14,7 +16,7 @@ class AccessibilityChecker : LocalInspectionTool() {
 
     override fun buildVisitor(holder: ProblemsHolder, isOnTheFly: Boolean): PsiElementVisitor {
         return object : PsiElementVisitor() {
-            override fun visitFile(file: PsiFile) {
+            fun visitFile(file: PsiFile) {
                 if (file.language.isKindOf(HTMLLanguage.INSTANCE) || file.language.isKindOf(CssLanguage.INSTANCE)) {
                     val fileContent = file.text
                     chatGPTClient.evaluateAccessibility(fileContent) { feedback ->

@@ -1,6 +1,8 @@
+package org.brunini.demo.GptTools
 import okhttp3.*
 import com.google.gson.Gson
 import com.google.gson.JsonObject
+import okhttp3.MediaType.Companion.toMediaType
 import java.io.IOException
 
 class ChatGPTClient(private val apiKey: String) {
@@ -19,7 +21,7 @@ class ChatGPTClient(private val apiKey: String) {
         val request = Request.Builder()
             .url("https://api.openai.com/v1/chat/completions")
             .addHeader("Authorization", "Bearer $apiKey")
-            .post(RequestBody.create(MediaType.get("application/json"), gson.toJson(requestBody)))
+            .post(RequestBody.create("application/json".toMediaType(), gson.toJson(requestBody)))
             .build()
 
         client.newCall(request).enqueue(object : Callback {

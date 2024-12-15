@@ -1,21 +1,39 @@
 <idea-plugin>
     <id>com.example.accessibilitychecker</id>
     <name>Accessibility Checker</name>
-    <version>1.0</version>
-    <vendor email="email@example.com" url="https://example.com">Seu Nome</vendor>
+    <version>1.0.0</version>
+    <vendor email="email@example.com" url="https://example.com">Heitor Brunini</vendor>
 
     <depends>com.intellij.modules.platform</depends>
 
+    <resource-bundle>messages.AccessibilityCheckerBundle</resource-bundle>
+
     <extensions defaultExtensionNs="com.intellij">
-        <inspectionTool id="AccessibilityChecker" implementationClass="AccessibilityChecker" />
+        <!-- Configuração do projeto -->
         <projectConfigurable instance="AccessibilityCheckerConfigurable"
                              displayName="Accessibility Checker Settings"
                              id="com.example.accessibilityCheckerConfigurable"/>
+
+        <!-- Inspeção de código -->
+        <inspectionTool id="AccessibilityChecker" implementationClass="AccessibilityChecker" />
+        <localInspection language="HTML" implementationClass="org.brunini.demo.CheckerTools.AccessibilityChecker"/>
     </extensions>
 
     <actions>
+        <!-- Grupo de Ações -->
         <group id="AccessibilityCheckerGroup" text="Accessibility Checker" description="Check HTML and CSS for accessibility issues">
-            <action id="RunAccessibilityCheck" class="AccessibilityAction" text="Run Accessibility Check" description="Check for accessibility issues" />
+            <action id="RunAccessibilityCheck" class="AccessibilityAction"
+                    text="Run Accessibility Check"
+                    description="Check for accessibility issues" />
         </group>
+
+        <!-- Ação Individual no Menu Tools -->
+        <action id="com.example.accessibilitychecker.AnalyzeAction"
+                class="com.example.accessibilitychecker.AnalyzeAccessibilityAction"
+                text="Analyze Accessibility"
+                description="Analisa o código HTML/CSS para verificar a conformidade com as diretrizes WCAG 2.2."
+                icon="icons/analyzeAccessibility.svg">
+            <add-to-group group-id="ToolsMenu" anchor="last" />
+        </action>
     </actions>
 </idea-plugin>
